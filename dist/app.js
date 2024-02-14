@@ -13,7 +13,7 @@ function getRandomEmoji() {
 app.get("/", (req, res) => {
     let image = getRandomEmoji() + ".svg";
     console.log(image);
-    res.send(`https://notion-emojis.s3-us-west-2.amazonaws.com/prod/svg-twitter/${image}`);
+    res.redirect(`https://notion-emojis.s3-us-west-2.amazonaws.com/prod/svg-twitter/${image}`);
 });
 app.listen(port, () => {
     console.log(`Express is listening at http://localhost:${port}`);
