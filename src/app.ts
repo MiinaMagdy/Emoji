@@ -13,6 +13,8 @@ app.get("/", (req: Request, res: Response) => {
   fetch(fileUrl)
     .then(async (response) => {
       const data = Buffer.from(await response.arrayBuffer()).toString("base64");
+      res.setHeader("Content-Type", "image/svg+xml");
+      res.setHeader("Cache-Control", "public, max-age=31536000");
       res.send(`<img src="data:image/svg+xml;base64,${data}" />`);
     })
     .catch((err) => {
