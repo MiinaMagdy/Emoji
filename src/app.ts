@@ -12,9 +12,10 @@ app.get("/", (req: Request, res: Response) => {
   const fileUrl = `https://notion-emojis.s3-us-west-2.amazonaws.com/prod/svg-twitter/${image}`;
   fetch(fileUrl)
     .then(async (response) => {
-      const data = Buffer.from(await response.arrayBuffer()).toString("base64");
+      const data = Buffer.from(await response.arrayBuffer()).toString();
       res.setHeader("Cache-Control", "public, max-age=31536000");
-      res.send(`<img src="data:image/svg+xml;base64,${data}" />`);
+      res.setHeader("Content-Type", "image/svg+xml");
+      res.send(data);
     })
     .catch((err) => {
       console.error(err);
