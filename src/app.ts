@@ -7,7 +7,7 @@ function getRandomEmoji() {
   return emojies[Math.floor(Math.random() * emojies.length)];
 }
 
-app.get("/", (req: Request, res: Response) => {
+app.get("/emoji.svg", (req: Request, res: Response) => {
   const image = getRandomEmoji() + ".svg";
   const fileUrl = `https://notion-emojis.s3-us-west-2.amazonaws.com/prod/svg-twitter/${image}`;
   fetch(fileUrl)
