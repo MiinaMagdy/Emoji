@@ -3,14 +3,16 @@ const emojies = require("../src/unicode");
 const app = express();
 const port = 3000;
 
-function getRandomEmoji(): string {
+function getRandomEmoji() {
   return emojies[Math.floor(Math.random() * emojies.length)];
 }
 
 app.get("/", (req: Request, res: Response) => {
-  let emoji = "&#x" + getRandomEmoji().replace("-", ";&#x");
-  console.log(emoji);
-  res.send(emoji);
+  let image = getRandomEmoji() + ".svg";
+  console.log(image);
+  res.send(
+    `https://notion-emojis.s3-us-west-2.amazonaws.com/prod/svg-twitter/${image}`
+  );
 });
 
 app.listen(port, () => {

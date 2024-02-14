@@ -11,9 +11,9 @@ function getRandomEmoji() {
     return emojies[Math.floor(Math.random() * emojies.length)];
 }
 app.get("/", (req, res) => {
-    let emoji = "&#x" + getRandomEmoji().replace("-", ";&#x");
-    console.log(emoji);
-    res.send(emoji);
+    let image = getRandomEmoji() + ".svg";
+    console.log(image);
+    res.send(`https://notion-emojis.s3-us-west-2.amazonaws.com/prod/svg-twitter/${image}`);
 });
 app.listen(port, () => {
     console.log(`Express is listening at http://localhost:${port}`);
